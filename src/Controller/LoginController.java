@@ -14,7 +14,7 @@ public class LoginController {
         this.loginView = view;
 
         // Configurando o botão
-        this.loginView.getBt_Cadastro().addActionListener(e -> abrirTelaCadastro());
+      //  this.loginView.getBt_Cadastro().addActionListener(e -> abrirTelaCadastro());
     }
 
     private void abrirTelaCadastro() {
