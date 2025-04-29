@@ -23,6 +23,7 @@ public class LoginController {
     public void abrirTelaCadastro() {
         loginView.dispose(); // Fecha a tela de login
         TelaCadastro cadastroView = new TelaCadastro();
+        new CadastroController(cadastroView);
         cadastroView.setVisible(true);
     }
     
