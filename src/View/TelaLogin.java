@@ -4,6 +4,9 @@
  */
 package View;
 
+import javax.swing.JButton;
+
+
 /**
  *
  * @author PHLOliveira
@@ -16,6 +19,10 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
     }
+    
+    public JButton getBt_Cadastro() {
+    return bt_cadastro;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,7 +159,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void bt_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastroActionPerformed
         // TODO add your handling code here:
-        this.loginView.getBt_Cadastro().addActionListener(e -> abrirTelaCadastro());
+        
+        
     }//GEN-LAST:event_bt_cadastroActionPerformed
 
     /**
@@ -189,7 +197,8 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cadastro;
     private javax.swing.JButton bt_login;
