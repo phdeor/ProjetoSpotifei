@@ -6,18 +6,19 @@ package Controller;
 import View.TelaLogin;
 import View.TelaCadastro;
 
+
 public class LoginController {
 
-    private TelaLogin loginView;
+    public TelaLogin loginView;
 
     public LoginController(TelaLogin view) {
         this.loginView = view;
 
         // Configurando o botão
-      //  this.loginView.getBt_Cadastro().addActionListener(e -> abrirTelaCadastro());
+        this.loginView.getBt_Cadastro().addActionListener(e -> abrirTelaCadastro());
     }
 
-    private void abrirTelaCadastro() {
+    public void abrirTelaCadastro() {
         loginView.dispose(); // Fecha a tela de login
         TelaCadastro cadastroView = new TelaCadastro();
         cadastroView.setVisible(true);
