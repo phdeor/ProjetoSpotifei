@@ -5,6 +5,7 @@
 package Controller;
 import View.TelaLogin;
 import View.TelaCadastro;
+import View.TelaMenu;
 
 
 public class LoginController {
@@ -16,12 +17,19 @@ public class LoginController {
 
         // Configurando o botão
         this.loginView.getBt_Cadastro().addActionListener(e -> abrirTelaCadastro());
+        this.loginView.getBt_Menu().addActionListener(e -> abrirTelaMenu());
     }
 
     public void abrirTelaCadastro() {
         loginView.dispose(); // Fecha a tela de login
         TelaCadastro cadastroView = new TelaCadastro();
         cadastroView.setVisible(true);
+    }
+    
+     public void abrirTelaMenu() {
+        loginView.dispose(); // Fecha a tela de login
+        TelaMenu menuView = new TelaMenu();
+        menuView.setVisible(true);
     }
 }
     

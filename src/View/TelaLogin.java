@@ -22,7 +22,10 @@ public class TelaLogin extends javax.swing.JFrame {
     
     public JButton getBt_Cadastro() {
     return bt_cadastro;
-}
+    }
+    public JButton getBt_Menu() {
+    return bt_login;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
