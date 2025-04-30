@@ -7,6 +7,14 @@
  * Created: 26 de abr. de 2025
  */
 
+CREATE TABLE  usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+
 CREATE TABLE IF NOT EXISTS public."Artista"
 (
     "ID_Artista" integer NOT NULL,

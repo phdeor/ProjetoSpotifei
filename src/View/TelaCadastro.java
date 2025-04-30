@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package View;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
+import Controller.CadastroController;
+import javax.swing.JLabel;
 
-/**
- *
- * @author PHLOliveira
- */
+
+
 public class TelaCadastro extends javax.swing.JFrame {
 
     /**
@@ -17,11 +15,66 @@ public class TelaCadastro extends javax.swing.JFrame {
      */
     public TelaCadastro() {
         initComponents();
+        c = new CadastroController(this);
     }
     
-    public JButton getBt_Login() {
-    return bt_login;
+    public JButton getBt_salvar() {
+        return bt_salvar;
     }
+
+    public void setBt_salvar(JButton bt_salvar) {
+        this.bt_salvar = bt_salvar;
+    }
+
+    public JLabel getLbl_nome_cadastro() {
+        return lbl_nome_cadastro;
+    }
+
+    public void setLbl_nome_cadastro(JLabel lbl_nome_cadastro) {
+        this.lbl_nome_cadastro = lbl_nome_cadastro;
+    }
+
+    public JLabel getLbl_senha_cadastro() {
+        return lbl_senha_cadastro;
+    }
+
+    public void setLbl_senha_cadastro(JLabel lbl_senha_cadastro) {
+        this.lbl_senha_cadastro = lbl_senha_cadastro;
+    }
+
+    public JLabel getLbl_usuario_cadastro() {
+        return lbl_usuario_cadastro;
+    }
+
+    public void setLbl_usuario_cadastro(JLabel lbl_usuario_cadastro) {
+        this.lbl_usuario_cadastro = lbl_usuario_cadastro;
+    }
+
+    public JTextField getTxt_nome_cadastro() {
+        return txt_nome_cadastro;
+    }
+
+    public void setTxt_nome_cadastro(JTextField txt_nome_cadastro) {
+        this.txt_nome_cadastro = txt_nome_cadastro;
+    }
+
+    public JTextField getTxt_senha_cadastro() {
+        return txt_senha_cadastro;
+    }
+
+    public void setTxt_senha_cadastro(JTextField txt_senha_cadastro) {
+        this.txt_senha_cadastro = txt_senha_cadastro;
+    }
+
+    public JTextField getTxt_usuario_cadastro() {
+        return txt_usuario_cadastro;
+    }
+
+    public void setTxt_usuario_cadastro(JTextField txt_usuario_cadastro) {
+        this.txt_usuario_cadastro = txt_usuario_cadastro;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,12 +89,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lbl_usuario = new javax.swing.JLabel();
-        lbl_nome = new javax.swing.JLabel();
-        lbl_senha = new javax.swing.JLabel();
-        txt_nome = new javax.swing.JTextField();
-        txt_usuario = new javax.swing.JTextField();
-        txt_senha = new javax.swing.JTextField();
+        lbl_usuario_cadastro = new javax.swing.JLabel();
+        lbl_nome_cadastro = new javax.swing.JLabel();
+        lbl_senha_cadastro = new javax.swing.JLabel();
+        txt_nome_cadastro = new javax.swing.JTextField();
+        txt_usuario_cadastro = new javax.swing.JTextField();
+        txt_senha_cadastro = new javax.swing.JTextField();
         bt_login = new javax.swing.JButton();
         bt_salvar = new javax.swing.JButton();
 
@@ -55,15 +108,15 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         jLabel3.setText("CADASTRO");
 
-        lbl_usuario.setText("USUARIO:");
+        lbl_usuario_cadastro.setText("USUARIO:");
 
-        lbl_nome.setText("NOME:");
+        lbl_nome_cadastro.setText("NOME:");
 
-        lbl_senha.setText("SENHA:");
+        lbl_senha_cadastro.setText("SENHA:");
 
-        txt_usuario.addActionListener(new java.awt.event.ActionListener() {
+        txt_usuario_cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_usuarioActionPerformed(evt);
+                txt_usuario_cadastroActionPerformed(evt);
             }
         });
 
@@ -81,6 +134,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         bt_salvar.setForeground(new java.awt.Color(0, 51, 153));
         bt_salvar.setText("SALVAR");
         bt_salvar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        bt_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_salvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,25 +147,25 @@ public class TelaCadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_usuario_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_usuario_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(lbl_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_senha_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(bt_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(bt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_senha_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(lbl_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_nome_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_nome_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -136,16 +194,16 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_nome_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_nome_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_usuario_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_usuario_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txt_senha_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_senha_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(bt_salvar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
@@ -156,14 +214,19 @@ public class TelaCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
+    private void txt_usuario_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuario_cadastroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_usuarioActionPerformed
+    }//GEN-LAST:event_txt_usuario_cadastroActionPerformed
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_bt_loginActionPerformed
+
+    private void bt_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_salvarActionPerformed
+        // TODO add your handling code here:
+        c.salvar();
+    }//GEN-LAST:event_bt_salvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +263,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
     }
 
+
+
+    private CadastroController c;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_login;
     private javax.swing.JButton bt_salvar;
@@ -207,11 +273,11 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JLabel lbl_nome;
-    private javax.swing.JLabel lbl_senha;
-    private javax.swing.JLabel lbl_usuario;
-    private javax.swing.JTextField txt_nome;
-    private javax.swing.JTextField txt_senha;
-    private javax.swing.JTextField txt_usuario;
+    private javax.swing.JLabel lbl_nome_cadastro;
+    private javax.swing.JLabel lbl_senha_cadastro;
+    private javax.swing.JLabel lbl_usuario_cadastro;
+    private javax.swing.JTextField txt_nome_cadastro;
+    private javax.swing.JTextField txt_senha_cadastro;
+    private javax.swing.JTextField txt_usuario_cadastro;
     // End of variables declaration//GEN-END:variables
 }

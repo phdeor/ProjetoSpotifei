@@ -28,13 +28,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lbl_usuario" max="32767" attributes="0"/>
-                          <Component id="lbl_senha" min="-2" pref="72" max="-2" attributes="0"/>
+                          <Component id="lbl_usuario_login" max="32767" attributes="0"/>
+                          <Component id="lbl_senha_login" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txt_senha" max="32767" attributes="0"/>
-                          <Component id="txt_usuario" max="32767" attributes="0"/>
+                          <Component id="txt_senha_login" max="32767" attributes="0"/>
+                          <Component id="txt_usuario_login" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
@@ -72,13 +72,13 @@
               <Component id="lbl_login" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lbl_usuario" max="32767" attributes="0"/>
-                  <Component id="txt_usuario" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="lbl_usuario_login" max="32767" attributes="0"/>
+                  <Component id="txt_usuario_login" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbl_senha" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="txt_senha" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="lbl_senha_login" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="txt_senha_login" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="bt_login" min="-2" max="-2" attributes="0"/>
@@ -131,24 +131,24 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_cadastroActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_usuario">
+    <Component class="javax.swing.JLabel" name="lbl_usuario_login">
       <Properties>
         <Property name="text" type="java.lang.String" value="USUARIO:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_senha">
+    <Component class="javax.swing.JLabel" name="lbl_senha_login">
       <Properties>
         <Property name="text" type="java.lang.String" value="SENHA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_usuario">
+    <Component class="javax.swing.JTextField" name="txt_usuario_login">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_usuarioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_usuario_loginActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_senha">
+    <Component class="javax.swing.JTextField" name="txt_senha_login">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_senhaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_senha_loginActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_login">

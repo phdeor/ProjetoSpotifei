@@ -30,13 +30,13 @@
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="lbl_usuario" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="lbl_usuario_cadastro" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txt_usuario" min="-2" pref="289" max="-2" attributes="0"/>
+                      <Component id="txt_usuario_cadastro" min="-2" pref="289" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="lbl_senha" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="lbl_senha_cadastro" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
@@ -44,7 +44,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="bt_login" min="-2" pref="114" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txt_senha" min="-2" pref="289" max="-2" attributes="0"/>
+                          <Component id="txt_senha_cadastro" min="-2" pref="289" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -52,9 +52,9 @@
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
-              <Component id="lbl_nome" min="-2" pref="77" max="-2" attributes="0"/>
+              <Component id="lbl_nome_cadastro" min="-2" pref="77" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txt_nome" min="-2" pref="289" max="-2" attributes="0"/>
+              <Component id="txt_nome_cadastro" min="-2" pref="289" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -90,18 +90,18 @@
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txt_nome" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="lbl_nome" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="txt_nome_cadastro" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="lbl_nome_cadastro" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txt_usuario" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="lbl_usuario" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="txt_usuario_cadastro" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="lbl_usuario_cadastro" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txt_senha" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="lbl_senha" alignment="3" max="32767" attributes="0"/>
+                          <Component id="txt_senha_cadastro" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="lbl_senha_cadastro" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -138,29 +138,29 @@
         <Property name="text" type="java.lang.String" value="CADASTRO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_usuario">
+    <Component class="javax.swing.JLabel" name="lbl_usuario_cadastro">
       <Properties>
         <Property name="text" type="java.lang.String" value="USUARIO:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_nome">
+    <Component class="javax.swing.JLabel" name="lbl_nome_cadastro">
       <Properties>
         <Property name="text" type="java.lang.String" value="NOME:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_senha">
+    <Component class="javax.swing.JLabel" name="lbl_senha_cadastro">
       <Properties>
         <Property name="text" type="java.lang.String" value="SENHA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_nome">
+    <Component class="javax.swing.JTextField" name="txt_nome_cadastro">
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_usuario">
+    <Component class="javax.swing.JTextField" name="txt_usuario_cadastro">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_usuarioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_usuario_cadastroActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_senha">
+    <Component class="javax.swing.JTextField" name="txt_senha_cadastro">
     </Component>
     <Component class="javax.swing.JButton" name="bt_login">
       <Properties>
@@ -196,6 +196,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_salvarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -1,36 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
-import View.TelaLogin;
-import View.TelaCadastro;
-import View.TelaMenu;
 
+
+import DAO.UsuarioDAO;
+import DAO.Conexao;
+import Model.Usuario;
+import View.TelaLogin;
+import View.TelaMenu;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class LoginController {
-
-    public TelaLogin loginView;
+    private TelaLogin view;
 
     public LoginController(TelaLogin view) {
-        this.loginView = view;
-
-        // Configurando o botão
-        this.loginView.getBt_Cadastro().addActionListener(e -> abrirTelaCadastro());
-        this.loginView.getBt_Menu().addActionListener(e -> abrirTelaMenu());
+        this.view = view;
     }
 
-    public void abrirTelaCadastro() {
-        loginView.dispose(); // Fecha a tela de login
-        TelaCadastro cadastroView = new TelaCadastro();
-        new CadastroController(cadastroView);
-        cadastroView.setVisible(true);
-    }
-    
-     public void abrirTelaMenu() {
-        loginView.dispose(); // Fecha a tela de login
-        TelaMenu menuView = new TelaMenu();
-        menuView.setVisible(true);
+    public void login() {
+        String usuario = view.getTxt_usuario_login().getText();
+        String senha = view.getTxt_senha_login().getText();
+
+        Usuario u = new Usuario(null, usuario, senha);
+        Conexao conexao = new Conexao();
+
+        try {
+            Connection conn = conexao.getConnection();
+            UsuarioDAO dao = new UsuarioDAO(conn);
+            ResultSet res = dao.consultar(u);
+
+            if (res.next()) {
+                JOptionPane.showMessageDialog(view, "Login efetuado com sucesso!");
+                TelaMenu menu = new TelaMenu();
+                menu.setVisible(true);
+                view.dispose();
+            } else {
+                JOptionPane.showMessageDialog(view, "Usuário ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(view, "Erro de conexão com o banco!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
     
