@@ -15,6 +15,8 @@ CREATE TABLE  usuarios (
 );
 
 
+
+
 CREATE TABLE IF NOT EXISTS public."Artista"
 (
     "ID_Artista" integer NOT NULL,

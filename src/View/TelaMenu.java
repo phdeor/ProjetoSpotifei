@@ -6,6 +6,7 @@ package View;
 
 import Controller.MenuController;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JTextField;
 
 /**
@@ -30,6 +31,11 @@ public class TelaMenu extends javax.swing.JFrame {
     public JButton getBt_buscar() {
         return bt_buscar;
     }
+
+    public JList<String> getList_historico() {
+        return list_historico;
+    }
+   
     
     
     
