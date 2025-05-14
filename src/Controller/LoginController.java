@@ -21,6 +21,12 @@ public class LoginController {
     public void login() {
         String usuario = view.getTxt_usuario_login().getText();
         String senha = view.getTxt_senha_login().getText();
+        
+        if (usuario.isEmpty() || senha.isEmpty()) {
+        JOptionPane.showMessageDialog(view, "Usuário e senha não podem estar vazios!", "Aviso", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+        
 
         Usuario u = new Usuario(null, usuario, senha);
         Conexao conexao = new Conexao();

@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Model.Historico;
+import java.sql.ResultSet;
+import javax.swing.DefaultListModel;
 
 
 public class HistoricoDAO {
@@ -21,6 +23,20 @@ public class HistoricoDAO {
         stmt.setString(2, historico.getGenero());
         stmt.executeUpdate();
     }
+    
+    public void consultarHistorico(DefaultListModel<String> listaModel) throws SQLException {
+    String sql = "SELECT nome, genero FROM historico ORDER BY id DESC LIMIT 10";
+    PreparedStatement stmt = conn.prepareStatement(sql);
+    ResultSet rs = stmt.executeQuery();
+
+    while (rs.next()) {
+        String nome = rs.getString("nome");
+        String genero = rs.getString("genero");
+
+        // Adiciona o item formatado na lista (você pode personalizar a string aqui)
+        listaModel.addElement("🎵 " + nome + " | " + genero);
+    }
+}
     
     
     
