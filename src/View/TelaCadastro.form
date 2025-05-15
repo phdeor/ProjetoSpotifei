@@ -81,7 +81,7 @@
                                       <Component id="txt_usuario_cadastro" min="-2" pref="319" max="-2" attributes="0"/>
                                       <Component id="txt_senha_cadastro" min="-2" pref="319" max="-2" attributes="0"/>
                                       <Component id="txt_nome_cadastro" min="-2" pref="319" max="-2" attributes="0"/>
-                                      <Component id="bt_salvar" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="bt_salvar" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

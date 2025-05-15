@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.Conexao;
+import DAO.CurtidaDAO;
 import DAO.HistoricoDAO;
 import DAO.MusicaDAO;
 import Model.Historico;
@@ -12,16 +13,16 @@ import javax.swing.JOptionPane;
 import View.TelaMenu;
 import javax.swing.DefaultListModel;
 
-
-
-    
-
+   
 
 public class MenuController {
     private TelaMenu view;
-
+    private String usuarioLogado;
+    private int usuarioId;
+    
     public MenuController(TelaMenu view) {
         this.view = view;
+        this.usuarioId = usuarioId;
     }
 
     public void buscarMusica() {
@@ -74,6 +75,7 @@ public class MenuController {
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(view, "Erro ao buscar músicas!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
+   
 }
     
     public void carregarHistorico() {
@@ -91,6 +93,47 @@ public class MenuController {
         JOptionPane.showMessageDialog(view, "Erro ao carregar histórico!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 }
+    
+    public void curtirMusica() {
+    String linhaSelecionada = view.getList_historico().getSelectedValue();
+
+    if (linhaSelecionada == null || linhaSelecionada.isEmpty()) {
+        JOptionPane.showMessageDialog(view, "Selecione uma música para curtir.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    try {
+        // Extrai o nome da música (assumindo o formato "🎵 Nome | Gênero")
+        String[] partes = linhaSelecionada.split("\\|");
+        String nomeMusica = partes[0].replace("🎵", "").trim();
+
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.getConnection();
+        MusicaDAO musicaDAO = new MusicaDAO(conn);
+        ResultSet res = musicaDAO.consultarMusica(new Musica(nomeMusica, ""));
+
+        if (res.next()) {
+            int musicaId = res.getInt("id_musica");
+
+            // Aqui você precisa passar o id do usuário logado
+            int usuarioId = Integer.parseInt(usuarioLogado); // Supondo que você passe o ID do usuário como string
+
+            CurtidaDAO curtidaDAO = new CurtidaDAO(conn);
+            curtidaDAO.curtirOuDescurtir(usuarioId, musicaId);
+
+            JOptionPane.showMessageDialog(view, "Curtida atualizada com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(view, "Música não encontrada no banco.");
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(view, "Erro ao curtir música.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    
+
+
 }
 
-
+    

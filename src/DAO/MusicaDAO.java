@@ -27,4 +27,17 @@ public class MusicaDAO {
 
     return statement.executeQuery();
     }
+    
+    public int buscarIdPorNome(String nome) throws SQLException {
+    String sql = "SELECT id_musica FROM musica WHERE nome = ?";
+    PreparedStatement stmt = conn.prepareStatement(sql);
+    stmt.setString(1, nome);
+    ResultSet rs = stmt.executeQuery();
+
+    if (rs.next()) {
+        return rs.getInt("id_musica");
+    }
+
+    return -1; 
+}
 }

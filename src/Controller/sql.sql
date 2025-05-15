@@ -14,14 +14,19 @@ CREATE TABLE  usuarios (
     senha VARCHAR(255) NOT NULL
 );
 
-
+CREATE TABLE curtidas (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+    musica_id INTEGER NOT NULL REFERENCES musica(id_musica),
+    UNIQUE (usuario_id, musica_id)
+);
 
 
 CREATE TABLE IF NOT EXISTS public."Artista"
 (
-    "ID_Artista" integer NOT NULL,
-    "Nome" "char" NOT NULL,
-    "ID_Musica" integer NOT NULL,
+    "id_artista" integer NOT NULL,
+    "nome" "char" NOT NULL,
+    "id_musica" integer NOT NULL,
     CONSTRAINT "Artista_pkey" PRIMARY KEY ("ID_Artista", "ID_Musica")
 )
 
@@ -30,12 +35,12 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public."Artista"
     OWNER to postgres;
 
-CREATE TABLE IF NOT EXISTS public."Musica"
+CREATE TABLE IF NOT EXISTS public."musica"
 (
-    "ID_Musica" integer NOT NULL,
-    "Nome" "char" NOT NULL,
-    "ID_Playlist" integer NOT NULL,
-    "ID_Artista" integer NOT NULL,
+    "id_musica" integer NOT NULL,
+    "nome" "char" NOT NULL,
+    "id_playlist" integer NOT NULL,
+    "id_artista" integer NOT NULL,
     CONSTRAINT "Musica_pkey" PRIMARY KEY ("ID_Musica", "ID_Playlist")
 )
 

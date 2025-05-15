@@ -38,7 +38,9 @@ public class LoginController {
 
             if (res.next()) {
                 JOptionPane.showMessageDialog(view, "Login efetuado com sucesso!");
+                
                 TelaMenu menu = new TelaMenu();
+                
                 menu.setVisible(true);
                 view.dispose();
             } else {
