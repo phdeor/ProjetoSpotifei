@@ -12,17 +12,18 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import View.TelaMenu;
 import javax.swing.DefaultListModel;
+import Model.Usuario;
 
    
 
 public class MenuController {
     private TelaMenu view;
     private String usuarioLogado;
-    private int usuarioId;
+    private Usuario usuario;
     
-    public MenuController(TelaMenu view) {
+    public MenuController(TelaMenu view, Usuario usuario) {
         this.view = view;
-        this.usuarioId = usuarioId;
+        this.usuario = usuario;
     }
 
     public void buscarMusica() {
@@ -37,7 +38,7 @@ public class MenuController {
         
         DefaultListModel<String> listaModel = (DefaultListModel<String>) view.getList_historico().getModel();
 
-        // Caso a lista já tenha músicas, não recriar o modelo
+        
         if (listaModel == null) {
             listaModel = new DefaultListModel<>();
         }
@@ -52,12 +53,12 @@ public class MenuController {
                          .append(" | Gênero: ").append(genero)
                          .append("\n");
 
-                // Limitar a 10 itens
+                
                 if (listaModel.size() >= 10) {
-                    listaModel.remove(listaModel.size() - 1); // Remove o item mais antigo
+                    listaModel.remove(listaModel.size() - 1); 
                 }
 
-                // Adicionar a nova música à lista
+                
                 listaModel.add(0,"🎵 " + nome + " | " + genero);
                 
                 // Salvar no histórico
@@ -115,8 +116,8 @@ public class MenuController {
         if (res.next()) {
             int musicaId = res.getInt("id_musica");
 
-            // Aqui você precisa passar o id do usuário logado
-            int usuarioId = Integer.parseInt(usuarioLogado); // Supondo que você passe o ID do usuário como string
+            
+            int usuarioId = Integer.parseInt(usuario.getId());  
 
             CurtidaDAO curtidaDAO = new CurtidaDAO(conn);
             curtidaDAO.curtirOuDescurtir(usuarioId, musicaId);

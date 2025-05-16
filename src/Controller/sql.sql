@@ -21,19 +21,14 @@ CREATE TABLE curtidas (
     UNIQUE (usuario_id, musica_id)
 );
 
-
 CREATE TABLE IF NOT EXISTS public."Artista"
 (
     "id_artista" integer NOT NULL,
     "nome" "char" NOT NULL,
     "id_musica" integer NOT NULL,
-    CONSTRAINT "Artista_pkey" PRIMARY KEY ("ID_Artista", "ID_Musica")
+    CONSTRAINT "Artista_pkey" PRIMARY KEY ("id_artista", "id_musica")
 )
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public."Artista"
-    OWNER to postgres;
 
 CREATE TABLE IF NOT EXISTS public."musica"
 (
@@ -44,7 +39,10 @@ CREATE TABLE IF NOT EXISTS public."musica"
     CONSTRAINT "Musica_pkey" PRIMARY KEY ("ID_Musica", "ID_Playlist")
 )
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public."Musica"
-    OWNER to postgres;
+CREATE TABLE IF NOT EXISTS public.historico
+(
+    id integer NOT NULL DEFAULT nextval('historico_id_seq'::regclass),
+    nome character varying(100) COLLATE pg_catalog."default",
+    genero character varying(50) COLLATE pg_catalog."default",
+    CONSTRAINT historico_pkey PRIMARY KEY (id)
+)

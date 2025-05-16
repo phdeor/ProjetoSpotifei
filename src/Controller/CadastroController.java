@@ -21,7 +21,7 @@ public class CadastroController {
         String nome = view.getTxt_nome_cadastro().getText();
         String usuario = view.getTxt_usuario_cadastro().getText();
         String senha = view.getTxt_senha_cadastro().getText();
-        Usuario u = new Usuario(nome, usuario,senha);
+        Usuario u = new Usuario(nome, usuario,senha, null);
         
         Conexao conexao = new Conexao();
         try {
