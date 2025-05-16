@@ -24,11 +24,11 @@ public class LoginController {
         
         if (usuario.isEmpty() || senha.isEmpty()) {
         JOptionPane.showMessageDialog(view, "Usuário e senha não podem estar vazios!", "Aviso", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+            return;
+        }
         
 
-        Usuario u = new Usuario(null, usuario, senha);
+        Usuario u = new Usuario(null, usuario, senha, null);
         Conexao conexao = new Conexao();
 
         try {
@@ -37,6 +37,8 @@ public class LoginController {
             ResultSet res = dao.consultar(u);
 
             if (res.next()) {
+                u.setId(res.getString("id"));
+                u.setNome(res.getString("nome"));
                 JOptionPane.showMessageDialog(view, "Login efetuado com sucesso!");
                 
                 TelaMenu menu = new TelaMenu();

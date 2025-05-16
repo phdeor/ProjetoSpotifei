@@ -5,12 +5,13 @@ package Model;
 
 
 public class Usuario {
-    private String nome, usuario, senha;
+    private String nome, usuario, senha, id;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String usuario, String senha) {
+    public Usuario(String nome, String usuario, String senha, String id) {
+        this.id = id;
         this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
@@ -18,6 +19,14 @@ public class Usuario {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
