@@ -14,6 +14,12 @@ CREATE TABLE  usuarios (
     senha VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE musica (
+    id_musica SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    genero VARCHAR(50)
+);
+
 CREATE TABLE curtidas (
     id SERIAL PRIMARY KEY,
     usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
@@ -30,19 +36,13 @@ CREATE TABLE IF NOT EXISTS public."Artista"
 )
 
 
-CREATE TABLE IF NOT EXISTS public."musica"
-(
-    "id_musica" integer NOT NULL,
-    "nome" "char" NOT NULL,
-    "id_playlist" integer NOT NULL,
-    "id_artista" integer NOT NULL,
-    CONSTRAINT "Musica_pkey" PRIMARY KEY ("ID_Musica", "ID_Playlist")
-)
+CREATE TABLE IF NOT EXISTS public.historico (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    genero VARCHAR(50)
+);
 
-CREATE TABLE IF NOT EXISTS public.historico
-(
-    id integer NOT NULL DEFAULT nextval('historico_id_seq'::regclass),
-    nome character varying(100) COLLATE pg_catalog."default",
-    genero character varying(50) COLLATE pg_catalog."default",
-    CONSTRAINT historico_pkey PRIMARY KEY (id)
-)
+
+
+
+
