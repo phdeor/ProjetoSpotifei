@@ -7,6 +7,14 @@ CREATE TABLE artista (
     
 );
 
+CREATE TABLE curtida (
+    id_usuario INT,
+    id_musica INT,
+    PRIMARY KEY (id_usuario, id_musica),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+    FOREIGN KEY (id_musica) REFERENCES musica(id_musica)
+);
+
 
 CREATE TABLE musica (
     id_musica SERIAL PRIMARY KEY,
