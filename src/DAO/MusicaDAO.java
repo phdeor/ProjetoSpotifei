@@ -40,4 +40,13 @@ public class MusicaDAO {
 
     return -1; 
 }
+    
+    public ResultSet buscarMusicaPorNomeEGenero(String nome, String genero) throws SQLException {
+    String sql = "SELECT * FROM musica WHERE nome = ? AND genero = ?";
+    PreparedStatement stmt = conn.prepareStatement(sql);
+    stmt.setString(1, nome);
+    stmt.setString(2, genero);
+    return stmt.executeQuery();
+}
+    
 }

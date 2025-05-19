@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import View.TelaMenu;
 import javax.swing.DefaultListModel;
 import Model.Usuario;
+import java.util.List;
+import java.util.ArrayList;
 
    
 
@@ -20,6 +22,7 @@ public class MenuController {
     private TelaMenu view;
     private String usuarioLogado;
     private Usuario usuario;
+    private List<String> historicoBuscas = new ArrayList<>();
     
     public MenuController(TelaMenu view, Usuario usuario) {
         this.view = view;
@@ -35,48 +38,43 @@ public class MenuController {
         Connection conn = conexao.getConnection();
         MusicaDAO dao = new MusicaDAO(conn);
         ResultSet res = dao.consultarMusica(musica);
-        
-        DefaultListModel<String> listaModel = (DefaultListModel<String>) view.getList_historico().getModel();
 
-        
-        if (listaModel == null) {
-            listaModel = new DefaultListModel<>();
+        StringBuilder resultado = new StringBuilder();
+        boolean encontrou = false;
+
+        while (res.next()) {
+            String nome = res.getString("nome");
+            String genero = res.getString("genero");
+            String entrada = "🎵 " + nome + " | " + genero;
+            
+            HistoricoDAO historicoDAO = new HistoricoDAO(conn);
+            Historico historico = new Historico(nome, genero);
+            historicoDAO.salvar(historico, Integer.parseInt(usuario.getId()));
+
+            // Adiciona ao histórico (máximo 10)
+            if (historicoBuscas.size() >= 10) {
+                historicoBuscas.remove(historicoBuscas.size() - 1);
+            }
+            historicoBuscas.add(0, entrada);
+           
+
+            // Monta mensagem para exibir
+            resultado.append("Nome: ").append(nome)
+                     .append(" | Gênero: ").append(genero)
+                     .append("\n");
+            encontrou = true;
         }
 
-        if (res.next()) {
-            StringBuilder resultado = new StringBuilder("Músicas encontradas:\n");
-            do {
-                String nome = res.getString("nome");
-                String genero = res.getString("genero");
-                
-                resultado.append("Nome: ").append(nome)
-                         .append(" | Gênero: ").append(genero)
-                         .append("\n");
-
-                
-                if (listaModel.size() >= 10) {
-                    listaModel.remove(listaModel.size() - 1); 
-                }
-
-                
-                listaModel.add(0,"🎵 " + nome + " | " + genero);
-                
-                // Salvar no histórico
-                HistoricoDAO historicoDAO = new HistoricoDAO(conn);
-                historicoDAO.salvar(new Historico(nome, genero));
-            } while (res.next());
-
-            // Atualiza a JList com o novo modelo
-            view.getList_historico().setModel(listaModel);
-
+        if (encontrou) {
             JOptionPane.showMessageDialog(view, resultado.toString(), "Resultado da Busca", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(view, "Nenhuma música encontrada.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(view, "Nenhuma música encontrada.", "Busca", JOptionPane.WARNING_MESSAGE);
         }
+
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(view, "Erro ao buscar músicas!", "Erro", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(view, "Erro ao buscar música.", "Erro", JOptionPane.ERROR_MESSAGE);
     }
-   
 }
     
     public void carregarHistorico() {
@@ -86,11 +84,30 @@ public class MenuController {
         HistoricoDAO historicoDAO = new HistoricoDAO(conn);
 
         DefaultListModel<String> listaModel = new DefaultListModel<>();
-        historicoDAO.consultarHistorico(listaModel);
+        int usuarioId = Integer.parseInt(usuario.getId()); // PEGANDO O ID DO USUÁRIO LOGADO
+        historicoDAO.consultarHistorico(listaModel, usuarioId);
 
         view.getList_historico().setModel(listaModel);
 
     } catch (SQLException e) {
+        JOptionPane.showMessageDialog(view, "Erro ao carregar histórico!", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    
+    public void mostrarHistorico() {
+    try {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.getConnection();
+
+        HistoricoDAO historicoDAO = new HistoricoDAO(conn);
+        DefaultListModel<String> listaModel = new DefaultListModel<>();
+
+        int usuarioId = Integer.parseInt(usuario.getId());
+        historicoDAO.consultarHistorico(listaModel, usuarioId);
+
+        view.getList_historico().setModel(listaModel);
+    } catch (SQLException e) {
+        e.printStackTrace();
         JOptionPane.showMessageDialog(view, "Erro ao carregar histórico!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -104,25 +121,37 @@ public class MenuController {
     }
 
     try {
-        // Extrai o nome da música (assumindo o formato "🎵 Nome | Gênero")
+        // Extrai nome da música e gênero (formato: 🎵 Nome | Gênero)
         String[] partes = linhaSelecionada.split("\\|");
         String nomeMusica = partes[0].replace("🎵", "").trim();
+        String generoMusica = partes[1].trim();
 
         Conexao conexao = new Conexao();
         Connection conn = conexao.getConnection();
+
         MusicaDAO musicaDAO = new MusicaDAO(conn);
-        ResultSet res = musicaDAO.consultarMusica(new Musica(nomeMusica, ""));
+        // Aqui usamos buscarMusicaPorNomeEGenero para garantir que pegamos a música exata
+        ResultSet res = musicaDAO.buscarMusicaPorNomeEGenero(nomeMusica, generoMusica);
 
         if (res.next()) {
             int musicaId = res.getInt("id_musica");
-
-            
-            int usuarioId = Integer.parseInt(usuario.getId());  
+            int usuarioId = Integer.parseInt(usuario.getId());
 
             CurtidaDAO curtidaDAO = new CurtidaDAO(conn);
+            boolean jaCurtido = curtidaDAO.verificarCurtida(usuarioId, musicaId);
+
+            // Alterna entre curtir e descurtir
             curtidaDAO.curtirOuDescurtir(usuarioId, musicaId);
 
+            // Registra no histórico
+            HistoricoDAO historicoDAO = new HistoricoDAO(conn);
+            String acao = jaCurtido ? "Descurtiu" : "Curtiu";
+            Historico historico = new Historico(nomeMusica + " (" + acao + ")", generoMusica);
+            historicoDAO.salvar(historico, usuarioId);
+
             JOptionPane.showMessageDialog(view, "Curtida atualizada com sucesso!");
+            carregarHistorico();
+
         } else {
             JOptionPane.showMessageDialog(view, "Música não encontrada no banco.");
         }
@@ -132,6 +161,35 @@ public class MenuController {
         JOptionPane.showMessageDialog(view, "Erro ao curtir música.", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 }
+    
+    
+    public void mostrarMusicasCurtidas() {
+    try {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.getConnection();
+        
+        int usuarioId = Integer.parseInt(usuario.getId());
+        
+        CurtidaDAO curtidaDAO = new CurtidaDAO(conn);
+        ResultSet res = curtidaDAO.consultarMusicasCurtidas(usuarioId);
+        
+        DefaultListModel<String> listaModel = new DefaultListModel<>();
+        
+        while (res.next()) {
+            String nome = res.getString("nome");
+            String genero = res.getString("genero");
+            String item = "❤️ " + nome + " | " + genero;
+            listaModel.addElement(item);
+        }
+        
+        view.getList_historico().setModel(listaModel);
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(view, "Erro ao carregar músicas curtidas.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    
     
 
 

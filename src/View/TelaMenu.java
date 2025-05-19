@@ -21,7 +21,6 @@ public class TelaMenu extends javax.swing.JFrame {
     public TelaMenu(Usuario u) {
         initComponents();
         c = new MenuController(this, u);
-        c.carregarHistorico();
     }
     
      
@@ -58,6 +57,7 @@ public class TelaMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         lbl_menu = new javax.swing.JLabel();
         txt_buscar = new javax.swing.JTextField();
@@ -67,7 +67,21 @@ public class TelaMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         bt_curtir = new javax.swing.JButton();
         bt_curtidas = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        bt_playlists = new javax.swing.JButton();
+        bt_historico = new javax.swing.JButton();
+
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +105,6 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("HISTÓRICO:");
 
         bt_curtir.setText("CURTIR");
         bt_curtir.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +121,20 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("PLAYLIST");
+        bt_playlists.setText("PLAYLISTS");
+        bt_playlists.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_playlistsActionPerformed(evt);
+            }
+        });
+
+        bt_historico.setText("HISTORICO");
+        bt_historico.setActionCommand("");
+        bt_historico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_historicoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,7 +160,8 @@ public class TelaMenu extends javax.swing.JFrame {
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bt_curtidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(bt_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bt_historico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(151, 151, 151)
                         .addComponent(bt_curtir)))
@@ -154,14 +181,15 @@ public class TelaMenu extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bt_historico, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,12 +219,22 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void bt_curtidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_curtidasActionPerformed
         // TODO add your handling code here:
-        TelaCurtidas tc = new TelaCurtidas();
-        tc.setVisible(true);
-        this.setVisible(false);
+        c.mostrarMusicasCurtidas();
         
         
     }//GEN-LAST:event_bt_curtidasActionPerformed
+
+    private void bt_historicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_historicoActionPerformed
+        // TODO add your handling code here:
+        c.mostrarHistorico();
+    }//GEN-LAST:event_bt_historicoActionPerformed
+
+    private void bt_playlistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_playlistsActionPerformed
+        // TODO add your handling code here:
+        TelaPlaylist tp = new TelaPlaylist();
+        tp.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bt_playlistsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,7 +246,9 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JButton bt_buscar;
     private javax.swing.JButton bt_curtidas;
     private javax.swing.JButton bt_curtir;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton bt_historico;
+    private javax.swing.JButton bt_playlists;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

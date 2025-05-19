@@ -43,6 +43,12 @@ CREATE TABLE IF NOT EXISTS public.historico (
 );
 
 
+CREATE TABLE artista ( 
+    id_artista INT PRIMARY KEY REFERENCES pessoa(id), 
+    nome VARCHAR(100),
+
+);
+
 
 
 
