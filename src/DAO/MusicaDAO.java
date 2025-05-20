@@ -42,25 +42,31 @@ public class MusicaDAO {
     return statement.executeQuery();
     }
     
-    public int buscarIdPorNome(String nome) throws SQLException {
-    String sql = "SELECT id_musica FROM musicas WHERE nome = ?";
-    PreparedStatement stmt = conn.prepareStatement(sql);
-    stmt.setString(1, nome);
-    ResultSet rs = stmt.executeQuery();
-
-    if (rs.next()) {
-        return rs.getInt("id_musica");
-    }
-
-    return -1; 
-}
     
-    public ResultSet buscarMusicaPorNomeEGenero(String nome, String genero) throws SQLException {
-    String sql = "SELECT * FROM musicas WHERE nome = ? AND genero = ?";
+    
+    public ResultSet buscarMusica(String nome, String genero, String artista) throws SQLException {
+    String sql = """
+        SELECT m.* FROM musicas m
+        JOIN artistas a ON m.id_artista = a.id_artista
+        WHERE m.nome = ? AND m.genero = ? AND a.nome = ?
+    """;
     PreparedStatement stmt = conn.prepareStatement(sql);
     stmt.setString(1, nome);
     stmt.setString(2, genero);
+    stmt.setString(3, artista);
     return stmt.executeQuery();
 }
+    
+    public ResultSet listarTodasMusicasComArtista() throws SQLException {
+    String sql = """
+        SELECT m.nome, m.genero, a.nome AS nome_artista 
+        FROM musicas m 
+        JOIN artistas a ON m.id_artista = a.id_artista
+    """;
+    PreparedStatement stmt = conn.prepareStatement(sql);
+    return stmt.executeQuery();
+}
+    
+    
     
 }

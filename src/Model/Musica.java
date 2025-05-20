@@ -3,7 +3,26 @@ package Model;
 
 
 public class Musica {
-    private String nome, genero;
+    private int id;
+    private String nome, genero, artista;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+    
+    
 
     public String getNome() {
         return nome;
@@ -24,9 +43,12 @@ public class Musica {
     public Musica() {
     }
 
-    public Musica(String nome, String genero) {
+    public Musica(int id, String nome, String genero, String artista) {
+        this.id = id;
         this.nome = nome;
         this.genero = genero;
+        this.artista = artista;
+        
     }
     
     @Override

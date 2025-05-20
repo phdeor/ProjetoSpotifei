@@ -47,7 +47,7 @@ public class CurtidaDAO {
     public ResultSet consultarMusicasCurtidas(int idUsuario) throws SQLException {
     String sql = "SELECT m.nome, m.genero, a.nome as nome_artista " +
                  "FROM musicas m " +
-                 "INNER JOIN curtida c ON m.id_musica = c.id_musica " +
+                 "INNER JOIN curtidas c ON m.id_musica = c.id_musica " +
                  "LEFT JOIN artistas a ON m.id_artista = a.id_artista " +
                  "WHERE c.id_usuario = ?";
     PreparedStatement stmt = conn.prepareStatement(sql);

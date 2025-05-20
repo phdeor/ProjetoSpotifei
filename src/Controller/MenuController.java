@@ -114,6 +114,32 @@ public class MenuController {
     }
 }
     
+    public void mostrarTodasMusicas() {
+    try {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.getConnection();
+
+        MusicaDAO musicaDAO = new MusicaDAO(conn);
+        ResultSet res = musicaDAO.listarTodasMusicasComArtista();
+
+        DefaultListModel<String> listaModel = new DefaultListModel<>();
+
+        while (res.next()) {
+            String nome = res.getString("nome");
+            String genero = res.getString("genero");
+            String artista = res.getString("nome_artista");
+            String item = "🎶 " + nome + " | " + genero + " | " + artista;
+            listaModel.addElement(item);
+        }
+
+        view.getList_historico().setModel(listaModel);
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(view, "Erro ao carregar músicas.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    
     public void curtirMusica() {
     String linhaSelecionada = view.getList_historico().getSelectedValue();
 
@@ -123,17 +149,22 @@ public class MenuController {
     }
 
     try {
-        // Extrai nome da música e gênero (formato: 🎵 Nome | Gênero)
-        String[] partes = linhaSelecionada.split("\\|");
-        String nomeMusica = partes[0].replace("🎵", "").trim();
+        // Extrai nome, gênero e artista (formato: 🎶 Nome | Gênero | Artista)
+        String[] partes = linhaSelecionada.replace("🎶", "").trim().split("\\|");
+        if (partes.length < 3) {
+            JOptionPane.showMessageDialog(view, "Formato inválido da música.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String nomeMusica = partes[0].trim();
         String generoMusica = partes[1].trim();
+        String nomeArtista = partes[2].trim();
 
         Conexao conexao = new Conexao();
         Connection conn = conexao.getConnection();
 
         MusicaDAO musicaDAO = new MusicaDAO(conn);
-        // Aqui usamos buscarMusicaPorNomeEGenero para garantir que pegamos a música exata
-        ResultSet res = musicaDAO.buscarMusicaPorNomeEGenero(nomeMusica, generoMusica);
+        ResultSet res = musicaDAO.buscarMusica(nomeMusica, generoMusica, nomeArtista);
 
         if (res.next()) {
             int musicaId = res.getInt("id_musica");
@@ -148,11 +179,10 @@ public class MenuController {
             // Registra no histórico
             HistoricoDAO historicoDAO = new HistoricoDAO(conn);
             String acao = jaCurtido ? "Descurtiu" : "Curtiu";
-            Historico historico = new Historico(nomeMusica + " (" + acao + ")", generoMusica);
+            Historico historico = new Historico(nomeMusica + " (" + acao + ")", nomeArtista);
             historicoDAO.salvar(historico, usuarioId);
 
-            JOptionPane.showMessageDialog(view, "Curtida atualizada com sucesso!");
-            carregarHistorico();
+            JOptionPane.showMessageDialog(view, jaCurtido ? "Música descurtida!" : "Música curtida!");
 
         } else {
             JOptionPane.showMessageDialog(view, "Música não encontrada no banco.");
@@ -180,7 +210,8 @@ public class MenuController {
         while (res.next()) {
             String nome = res.getString("nome");
             String genero = res.getString("genero");
-            String artista = res.getString("nome_artista"); // Novo campo para artista
+            String artista = res.getString("nome_artista");
+
             String item = "❤️ " + nome + " | " + genero + " | " + artista;
             listaModel.addElement(item);
         }
