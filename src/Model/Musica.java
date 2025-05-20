@@ -31,7 +31,7 @@ public class Musica {
     
     @Override
     public String toString() {
-        return "Aluno{" + "nome=" + nome + ", genero=" + genero +'}';
+        return "Musica{" + "nome=" + nome + ", genero=" + genero +'}';
     }
     
     

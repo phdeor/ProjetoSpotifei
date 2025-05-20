@@ -31,13 +31,13 @@ public class MenuController {
 
     public void buscarMusica() {
     String termoBusca = view.getTxt_buscar().getText(); 
-    Musica musica = new Musica(termoBusca, termoBusca);
+    String tipo = view.getOpcoesBusca().getSelectedItem().toString();
 
     Conexao conexao = new Conexao();
     try {
         Connection conn = conexao.getConnection();
         MusicaDAO dao = new MusicaDAO(conn);
-        ResultSet res = dao.consultarMusica(musica);
+        ResultSet res = dao.consultarMusica(tipo, termoBusca);
 
         StringBuilder resultado = new StringBuilder();
         boolean encontrou = false;
@@ -45,10 +45,11 @@ public class MenuController {
         while (res.next()) {
             String nome = res.getString("nome");
             String genero = res.getString("genero");
-            String entrada = "🎵 " + nome + " | " + genero;
+            String artista = res.getString("nome_artista");
+            String entrada = "🎵 " + nome + " | " + genero + " | " + artista;
             
             HistoricoDAO historicoDAO = new HistoricoDAO(conn);
-            Historico historico = new Historico(nome, genero);
+            Historico historico = new Historico(tipo, termoBusca);
             historicoDAO.salvar(historico, Integer.parseInt(usuario.getId()));
 
             // Adiciona ao histórico (máximo 10)
@@ -61,6 +62,7 @@ public class MenuController {
             // Monta mensagem para exibir
             resultado.append("Nome: ").append(nome)
                      .append(" | Gênero: ").append(genero)
+                     .append(" | Artista: ").append(artista)
                      .append("\n");
             encontrou = true;
         }
@@ -167,23 +169,24 @@ public class MenuController {
     try {
         Conexao conexao = new Conexao();
         Connection conn = conexao.getConnection();
-        
+
         int usuarioId = Integer.parseInt(usuario.getId());
-        
+
         CurtidaDAO curtidaDAO = new CurtidaDAO(conn);
         ResultSet res = curtidaDAO.consultarMusicasCurtidas(usuarioId);
-        
+
         DefaultListModel<String> listaModel = new DefaultListModel<>();
-        
+
         while (res.next()) {
             String nome = res.getString("nome");
             String genero = res.getString("genero");
-            String item = "❤️ " + nome + " | " + genero;
+            String artista = res.getString("nome_artista"); // Novo campo para artista
+            String item = "❤️ " + nome + " | " + genero + " | " + artista;
             listaModel.addElement(item);
         }
-        
+
         view.getList_historico().setModel(listaModel);
-        
+
     } catch (SQLException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(view, "Erro ao carregar músicas curtidas.", "Erro", JOptionPane.ERROR_MESSAGE);

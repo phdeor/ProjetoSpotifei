@@ -3,19 +3,19 @@ package Model;
 
 
 public class Historico {
-    private String nome;
-    private String genero;
+    private String tipo;
+    private String pesquisa;
 
-    public Historico(String nome, String genero) {
-        this.nome = nome;
-        this.genero = genero;
+    public Historico(String tipo, String pesquisa) {
+        this.tipo = tipo;
+        this.pesquisa = pesquisa;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTipo() {
+        return tipo;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getPesquisa() {
+        return pesquisa;
     }
 }
