@@ -59,7 +59,7 @@ public class MenuController {
             historicoBuscas.add(0, entrada);
            
 
-            // Monta mensagem para exibir
+            
             resultado.append("Nome: ").append(nome)
                      .append(" | Gênero: ").append(genero)
                      .append(" | Artista: ").append(artista)
@@ -86,7 +86,7 @@ public class MenuController {
         HistoricoDAO historicoDAO = new HistoricoDAO(conn);
 
         DefaultListModel<String> listaModel = new DefaultListModel<>();
-        int usuarioId = Integer.parseInt(usuario.getId()); // PEGANDO O ID DO USUÁRIO LOGADO
+        int usuarioId = Integer.parseInt(usuario.getId()); 
         historicoDAO.consultarHistorico(listaModel, usuarioId);
 
         view.getList_historico().setModel(listaModel);
@@ -149,7 +149,7 @@ public class MenuController {
     }
 
     try {
-        // Extrai nome, gênero e artista (formato: 🎶 Nome | Gênero | Artista)
+        
         String[] partes = linhaSelecionada.replace("🎶", "").trim().split("\\|");
         if (partes.length < 3) {
             JOptionPane.showMessageDialog(view, "Formato inválido da música.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -173,10 +173,10 @@ public class MenuController {
             CurtidaDAO curtidaDAO = new CurtidaDAO(conn);
             boolean jaCurtido = curtidaDAO.verificarCurtida(usuarioId, musicaId);
 
-            // Alterna entre curtir e descurtir
+            
             curtidaDAO.curtirOuDescurtir(usuarioId, musicaId);
 
-            // Registra no histórico
+            
             HistoricoDAO historicoDAO = new HistoricoDAO(conn);
             String acao = jaCurtido ? "Descurtiu" : "Curtiu";
             Historico historico = new Historico(nomeMusica + " (" + acao + ")", nomeArtista);

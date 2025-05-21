@@ -23,15 +23,13 @@ public class CurtidaDAO {
         ResultSet res = stmtVerificar.executeQuery();
 
         if (res.next()) {
-            // Já curtiu — então vamos remover (descurtir)
             String removerSql = "DELETE FROM curtidas WHERE id_usuario = ? AND id_musica = ?";
             PreparedStatement stmtRemover = conn.prepareStatement(removerSql);
             stmtRemover.setInt(1, idUsuario);
             stmtRemover.setInt(2, idMusica);
             stmtRemover.executeUpdate();
             stmtRemover.close();
-        } else {
-            // Ainda não curtiu — então vamos adicionar
+        } else {          
             String inserirSql = "INSERT INTO curtidas (id_usuario, id_musica) VALUES (?, ?)";
             PreparedStatement stmtInserir = conn.prepareStatement(inserirSql);
             stmtInserir.setInt(1, idUsuario);

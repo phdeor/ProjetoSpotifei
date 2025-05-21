@@ -18,13 +18,13 @@ public class LoginController {
         this.view = view;
     }
 
-    public void login() {
+    public boolean login() {
         String usuario = view.getTxt_usuario_login().getText();
         String senha = view.getTxt_senha_login().getText();
         
         if (usuario.isEmpty() || senha.isEmpty()) {
         JOptionPane.showMessageDialog(view, "Usuário e senha não podem estar vazios!", "Aviso", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false ;
         }
         
 
@@ -45,11 +45,14 @@ public class LoginController {
                 
                 menu.setVisible(true);
                 view.dispose();
+                return false;
             } else {
                 JOptionPane.showMessageDialog(view, "Usuário ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(view, "Erro de conexão com o banco!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
 }

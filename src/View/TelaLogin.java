@@ -238,9 +238,10 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
         // TODO add your handling code here:
-        c.login();
+        if (c.login()) { 
         this.setVisible(false);
-        
+        this.dispose();
+    }
     }//GEN-LAST:event_bt_loginActionPerformed
 
     private void txt_senha_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_senha_loginActionPerformed

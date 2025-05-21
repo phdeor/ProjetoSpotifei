@@ -57,5 +57,26 @@ CREATE TABLE  IF NOT EXISTS musicas_playlists (
     FOREIGN KEY (id_musica) REFERENCES musicas(id_musica)
 );
 
+INSERT INTO artistas (nome) VALUES 
+('joji'), 
+('paramore'), 
+('thiaguinho'), 
+('sampha'), 
+('Travis scott');
+
+
+INSERT INTO músicas (nome, gênero, id_artista) VALUES 
+('yukon', 'indie', 1),
+('theonlyexception', 'soft rock', 2),
+('caraca muleque', 'pagode', 3),
+('modus', 'indie', 1),
+('indecision', 'pop', 4),
+('til further notice', 'trap', 5),
+('goosebumps', 'trap', 5),
+('dieforyou', 'indie', 1),
+('cough syrup', 'indie', 1),
+('misery business', 'rock', 2);
+
+
 
 

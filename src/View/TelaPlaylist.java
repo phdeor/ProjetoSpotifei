@@ -5,21 +5,32 @@
 package View;
 import Controller.PlaylistController;
 import Model.Usuario;
+import java.awt.Dimension;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author PHLOliveira
  */
 public class TelaPlaylist extends javax.swing.JFrame {
+
     private Usuario u;
     private PlaylistController c;
+    private DefaultListModel<String> modelPlaylist;
+    
     /**
      * Creates new form TelaPlaylist
      */
     public TelaPlaylist(Usuario u) {
     initComponents();
+    modelPlaylist = new DefaultListModel<>(); 
+    list_playlist.setModel(modelPlaylist);
+    list_playlist.setFixedCellWidth(275);
+    list_playlist.setVisibleRowCount(10);
+    jScrollPane1.setPreferredSize(new Dimension(275, 220));
     this.u = u;
     c = new PlaylistController(this, u);
+    c.mostrarPlaylists();
 }
     
     
@@ -47,6 +58,12 @@ public javax.swing.JButton getBtVoltar() {
     return bt_voltar;
 }
 
+    public DefaultListModel<String> getModelPlaylist() {
+        return modelPlaylist;
+    }
+
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +86,9 @@ public javax.swing.JButton getBtVoltar() {
         bt_voltar = new javax.swing.JButton();
         lbl_playlists = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        bt_adicionar = new javax.swing.JButton();
+        bt_remover = new javax.swing.JButton();
+        bt_carregarMusicas = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -99,11 +119,16 @@ public javax.swing.JButton getBtVoltar() {
             }
         });
 
-        bt_excluir.setBackground(new java.awt.Color(0, 0, 153));
+        bt_excluir.setBackground(new java.awt.Color(0, 51, 153));
         bt_excluir.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
         bt_excluir.setForeground(new java.awt.Color(255, 255, 255));
         bt_excluir.setText("EXCLUIR");
         bt_excluir.setBorder(null);
+        bt_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_excluirActionPerformed(evt);
+            }
+        });
 
         list_playlist.setBackground(new java.awt.Color(0, 0, 0));
         list_playlist.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,72 +161,119 @@ public javax.swing.JButton getBtVoltar() {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MUSICAS:");
 
+        bt_adicionar.setBackground(new java.awt.Color(0, 51, 153));
+        bt_adicionar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        bt_adicionar.setForeground(new java.awt.Color(255, 255, 255));
+        bt_adicionar.setText("ADICIONAR");
+        bt_adicionar.setBorder(null);
+        bt_adicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_adicionarActionPerformed(evt);
+            }
+        });
+
+        bt_remover.setBackground(new java.awt.Color(0, 51, 153));
+        bt_remover.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        bt_remover.setForeground(new java.awt.Color(255, 255, 255));
+        bt_remover.setText("REMOVER");
+        bt_remover.setBorder(null);
+        bt_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_removerActionPerformed(evt);
+            }
+        });
+
+        bt_carregarMusicas.setBackground(new java.awt.Color(102, 102, 102));
+        bt_carregarMusicas.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        bt_carregarMusicas.setForeground(new java.awt.Color(255, 255, 255));
+        bt_carregarMusicas.setText("CARREGAR");
+        bt_carregarMusicas.setBorder(null);
+        bt_carregarMusicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_carregarMusicasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addComponent(bt_criar_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(bt_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(bt_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_playlists))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(lbl_playlists))
                             .addComponent(jLabel1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(bt_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(bt_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bt_adicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(253, Short.MAX_VALUE)
                         .addComponent(lbl_playlist)
-                        .addGap(124, 124, 124)
-                        .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addGap(147, 147, 147)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bt_carregarMusicas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)))
+                .addGap(38, 38, 38))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(bt_remover, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_playlist))
-                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lbl_playlists))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(lbl_playlist)
+                    .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(lbl_playlists)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(bt_criar_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bt_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(bt_carregarMusicas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_criar_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_adicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bt_remover, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
         );
 
         pack();
@@ -209,6 +281,7 @@ public javax.swing.JButton getBtVoltar() {
 
     private void bt_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editarActionPerformed
         // TODO add your handling code here:
+        c.editarPlaylist();
         
     }//GEN-LAST:event_bt_editarActionPerformed
 
@@ -223,15 +296,38 @@ public javax.swing.JButton getBtVoltar() {
         c.criarPlaylist();
     }//GEN-LAST:event_bt_criar_playlistActionPerformed
 
+    private void bt_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_adicionarActionPerformed
+        // TODO add your handling code here:
+        c.adicionarMusica();
+    }//GEN-LAST:event_bt_adicionarActionPerformed
+
+    private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
+        // TODO add your handling code here:
+        c.excluirPlaylist();
+    }//GEN-LAST:event_bt_excluirActionPerformed
+
+    private void bt_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_removerActionPerformed
+        // TODO add your handling code here:
+        c.removerMusica();
+    }//GEN-LAST:event_bt_removerActionPerformed
+
+    private void bt_carregarMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_carregarMusicasActionPerformed
+        // TODO add your handling code here:
+        c.carregarMusicasDaPlaylistSelecionada();
+    }//GEN-LAST:event_bt_carregarMusicasActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_adicionar;
+    private javax.swing.JButton bt_carregarMusicas;
     private javax.swing.JButton bt_criar_playlist;
     private javax.swing.JButton bt_editar;
     private javax.swing.JButton bt_excluir;
+    private javax.swing.JButton bt_remover;
     private javax.swing.JButton bt_voltar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

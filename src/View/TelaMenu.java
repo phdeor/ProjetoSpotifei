@@ -101,7 +101,11 @@ public class TelaMenu extends javax.swing.JFrame {
         lbl_menu.setForeground(new java.awt.Color(0, 102, 204));
         lbl_menu.setText("SPOTIFEI");
 
+        bt_buscar.setBackground(new java.awt.Color(102, 102, 102));
+        bt_buscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_buscar.setForeground(new java.awt.Color(255, 255, 255));
         bt_buscar.setText("BUSCAR");
+        bt_buscar.setBorder(null);
         bt_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_buscarActionPerformed(evt);
@@ -115,30 +119,46 @@ public class TelaMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
+        bt_curtir.setBackground(new java.awt.Color(204, 204, 204));
+        bt_curtir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_curtir.setForeground(new java.awt.Color(204, 0, 51));
         bt_curtir.setText("CURTIR");
+        bt_curtir.setBorder(null);
         bt_curtir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_curtirActionPerformed(evt);
             }
         });
 
+        bt_curtidas.setBackground(new java.awt.Color(0, 51, 153));
+        bt_curtidas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_curtidas.setForeground(new java.awt.Color(255, 255, 255));
         bt_curtidas.setText("MUSICAS CURTIDAS");
         bt_curtidas.setActionCommand("");
+        bt_curtidas.setBorder(null);
         bt_curtidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_curtidasActionPerformed(evt);
             }
         });
 
+        bt_playlists.setBackground(new java.awt.Color(0, 51, 153));
+        bt_playlists.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_playlists.setForeground(new java.awt.Color(255, 255, 255));
         bt_playlists.setText("PLAYLISTS");
+        bt_playlists.setBorder(null);
         bt_playlists.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_playlistsActionPerformed(evt);
             }
         });
 
+        bt_historico.setBackground(new java.awt.Color(0, 51, 153));
+        bt_historico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_historico.setForeground(new java.awt.Color(255, 255, 255));
         bt_historico.setText("HISTORICO");
         bt_historico.setActionCommand("");
+        bt_historico.setBorder(null);
         bt_historico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_historicoActionPerformed(evt);
@@ -152,8 +172,12 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
 
+        bt_musica.setBackground(new java.awt.Color(0, 51, 153));
+        bt_musica.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_musica.setForeground(new java.awt.Color(255, 255, 255));
         bt_musica.setText("TODAS AS MUSICAS");
         bt_musica.setActionCommand("");
+        bt_musica.setBorder(null);
         bt_musica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_musicaActionPerformed(evt);
@@ -182,19 +206,17 @@ public class TelaMenu extends javax.swing.JFrame {
                             .addComponent(bt_musica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bt_playlists, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(151, 151, 151)
-                                .addComponent(bt_curtir))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(opcoesBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(bt_buscar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addGap(66, 66, 66)
+                        .addComponent(opcoesBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(bt_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)))
+                .addGap(84, 84, 84))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,8 +244,8 @@ public class TelaMenu extends javax.swing.JFrame {
                         .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
