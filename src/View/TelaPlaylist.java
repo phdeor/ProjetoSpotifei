@@ -11,13 +11,15 @@ import Model.Usuario;
  * @author PHLOliveira
  */
 public class TelaPlaylist extends javax.swing.JFrame {
-
+    private Usuario u;
+    private PlaylistController c;
     /**
      * Creates new form TelaPlaylist
      */
-    public TelaPlaylist() {
+    public TelaPlaylist(Usuario u) {
     initComponents();
-    
+    this.u = u;
+    c = new PlaylistController(this, u);
 }
     
     
@@ -71,38 +73,55 @@ public javax.swing.JButton getBtVoltar() {
         jButton2.setText("jButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(460, 360));
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(630, 430));
 
+        bt_criar_playlist.setBackground(new java.awt.Color(0, 51, 153));
         bt_criar_playlist.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        bt_criar_playlist.setForeground(new java.awt.Color(255, 255, 255));
         bt_criar_playlist.setText("CRIAR");
+        bt_criar_playlist.setBorder(null);
         bt_criar_playlist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_criar_playlistActionPerformed(evt);
             }
         });
 
+        bt_editar.setBackground(new java.awt.Color(0, 51, 153));
         bt_editar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        bt_editar.setForeground(new java.awt.Color(255, 255, 255));
         bt_editar.setText("EDITAR");
+        bt_editar.setBorder(null);
         bt_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_editarActionPerformed(evt);
             }
         });
 
+        bt_excluir.setBackground(new java.awt.Color(0, 0, 153));
         bt_excluir.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        bt_excluir.setForeground(new java.awt.Color(255, 255, 255));
         bt_excluir.setText("EXCLUIR");
+        bt_excluir.setBorder(null);
 
+        list_playlist.setBackground(new java.awt.Color(0, 0, 0));
+        list_playlist.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(list_playlist);
 
+        list_musicas.setBackground(new java.awt.Color(0, 0, 0));
+        list_musicas.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(list_musicas);
 
         lbl_playlist.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
+        lbl_playlist.setForeground(new java.awt.Color(0, 102, 204));
         lbl_playlist.setText("PLAYLIST");
 
+        bt_voltar.setBackground(new java.awt.Color(102, 102, 102));
         bt_voltar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        bt_voltar.setForeground(new java.awt.Color(255, 255, 255));
         bt_voltar.setText("VOLTAR");
+        bt_voltar.setBorder(null);
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_voltarActionPerformed(evt);
@@ -110,10 +129,12 @@ public javax.swing.JButton getBtVoltar() {
         });
 
         lbl_playlists.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        lbl_playlists.setForeground(new java.awt.Color(255, 255, 255));
         lbl_playlists.setText("PLAYLISTS:");
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        jLabel1.setText("MUSICAS");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("MUSICAS:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,12 +213,14 @@ public javax.swing.JButton getBtVoltar() {
     }//GEN-LAST:event_bt_editarActionPerformed
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-        // TODO add your handling code here:
+        TelaMenu tm = new TelaMenu(u);
+        tm.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bt_voltarActionPerformed
 
     private void bt_criar_playlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_criar_playlistActionPerformed
         // TODO add your handling code here:
-        
+        c.criarPlaylist();
     }//GEN-LAST:event_bt_criar_playlistActionPerformed
 
     /**

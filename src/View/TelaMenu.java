@@ -16,12 +16,15 @@ import javax.swing.JTextField;
  * @author PHLOliveira
  */
 public class TelaMenu extends javax.swing.JFrame {
+    private Usuario u;
+    private MenuController c;
     /**
      * Creates new form TelaMenu
      */
     public TelaMenu(Usuario u) {
         initComponents();
         c = new MenuController(this, u);
+        this.u = u;
     }
 
     public JComboBox<String> getOpcoesBusca() {
@@ -261,7 +264,7 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void bt_playlistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_playlistsActionPerformed
         // TODO add your handling code here:
-        TelaPlaylist tp = new TelaPlaylist();
+        TelaPlaylist tp = new TelaPlaylist(u);
         tp.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bt_playlistsActionPerformed
@@ -280,7 +283,7 @@ public class TelaMenu extends javax.swing.JFrame {
      */
     
     
-    private MenuController c;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_buscar;
     private javax.swing.JButton bt_curtidas;
