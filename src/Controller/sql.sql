@@ -65,7 +65,7 @@ INSERT INTO artistas (nome) VALUES
 ('Travis scott');
 
 
-INSERT INTO músicas (nome, gênero, id_artista) VALUES 
+INSERT INTO musicas (nome, genero, id_artista) VALUES 
 ('yukon', 'indie', 1),
 ('theonlyexception', 'soft rock', 2),
 ('caraca muleque', 'pagode', 3),
